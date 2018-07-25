@@ -1,0 +1,343 @@
+#Skript Maded by UnaitxiStyles aka 0GHz
+#Version 0.5 (Beta)
+
+on drop:
+	cancel event
+
+on join:
+	set join message to 
+	if player has permission "*":
+		set join message to "&4&l[Owner] &c%player% &ejoin the game"
+
+On quit:
+	set leave message to "&7[&c-&7] &7%player%"
+	if player has permission "*"
+		set join message to "&4&l[Owner] &c%player% &eleft the game"
+		
+command /breload:
+	description: Broadcast a Reload
+	aliases: /rel
+	permission: *
+	trigger:
+		broadcast "&aReload in 3...."
+		wait 20 ticks
+		broadcast "&aReload in 2...."
+		wait 20 ticks
+		broadcast "&aReload in 1...."
+		wait 20 ticks
+		make player execute "reload"
+	
+command /hub:
+	description: Go to Hub
+	aliases: /lobby
+	trigger:
+		open chest with 1 rows named "&c&lServer Hub" to player
+		wait 1 ticks
+		format slot 0 of player with white stained glass pane named "&fGlass" to close
+		format slot 1 of player with white stained glass pane named "&fGlass" to close
+		format slot 2 of player with white stained glass pane named "&fGlass" to close
+		format slot 3 of player with white stained glass pane named "&fGlass" to close
+		format slot 4 of player with nether star named "&cHub" with lore "&7&m---------------------------------||&cBack to Hub||||&e&lClick &efor back!||&7&m---------------------------------" to close then run [bungeecord connect player to "HUB"]
+		format slot 5 of player with white stained glass pane named "&fGlass" to close
+		format slot 6 of player with white stained glass pane named "&fGlass" to close
+		format slot 7 of player with white stained glass pane named "&fGlass" to close
+		format slot 8 of player with white stained glass pane named "&fGlass" to close	
+
+command /rank:
+	aliases: /yt, /twitch, /youtube
+	trigger:
+		send "&8&m-----------------------------------"
+		send "&dFamous Ranks"
+		send "&8&m-----------------------------------"
+		send "&5&lTwitch: &7250 Followers"
+		send "&4&lYou&f&lTube: &7100 Subscribers & 50 views"
+		send "&8&m-----------------------------------"
+
+command /buy:
+	description: Buycraft command
+	aliases: /shop, /store
+	trigger:
+		open chest with 1 rows named "&cRanks" to player
+		wait 1 ticks
+		format slot 2 of player with paper named "&1Rank 1" to close then run "msg %player% store.southcf.us/rank1"
+		format slot 3 of player with paper named "&2Rank 2" to close then run "msg %player% store.southcf.us/rank2"
+		format slot 4 of player with paper named "&3Rank 3" to close then run "msg %player% store.southcf.us/rank3"
+		format slot 5 of player with paper named "&4Rank 4" to close then run "msg %player% store.southcf.us/rank4"
+		format slot 6 of player with paper named "&5Rank 5" to close then run "msg %player% store.southcf.us/rank5"
+		
+command /cc:
+	description: Clear Chat
+	aliases: /clearchat, /cchat, /clearc
+	trigger:
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		broadcast ""
+		wait 10 ticks
+		broadcast "       &m---&f> &aChat cleared by &c%player% &f<&m---"
+		
+
+command /gm [<text>] [<player>]:
+	description: Set Gamemode easier
+	permission: gm.*
+	aliases: gamemode
+	trigger:
+		if arg 1 is not set:
+			send "&cPlease Select a Gamemode!"
+		if arg 1 is "s" or "survival" or "0":
+			if arg 2 is not set:
+				send "&aYour Gamemode was set to &cSurvival"
+				make player execute command "gamemode 0 "	
+			if arg 2 is set:
+				send "&a%arg 2%'s&a Gamemode has been set to &cSurvival"
+				make player execute command "gamemode 0 %arg 2%"
+		if arg 1 is "1" or "creative" or "c":
+			if arg 2 is not set:
+				send "&aYour Gamemode was set to &cCreative"
+				make player execute command "gamemode 1 "
+			if arg 2 is set:
+				send "&a%arg 2%'s&a Gamemode has been set to &cCreative"
+				make player execute command "gamemode 1 %arg 2%"
+		if arg 1 is "2" or "adventure" or "a":
+			if arg 2 is not set:
+				send "&aYour Gamemode was set to &cAdventure"
+				make player execute command "gamemode 2 "
+			if arg 2 is set:
+				send "&a%arg 2%'s&a Gamemode has been set to &cAdventure"
+				make player execute command "gamemode 2 %arg 2%"
+		if arg 1 is "3" or "spectator" or "s":
+			if arg 2 is not set:
+				send "&aYour Gamemode was set to &cSpectator"
+				make player execute command "gamemode 3 "
+			if arg 2 is set:
+				send "&a%arg 2%'s&a Gamemode has been set to &cAdventure"
+				make player execute command "gamemode 3 %arg 2%"
+				
+command /alert [<text>]:
+	description: Broadcast News
+	permission: *
+	aliases: /a
+	trigger:
+		if arg 1 is not set:
+			send "&c/alert (text)"
+		if arg 1 is set:
+			broadcast "[&4Alert&f] &e%arg 1%"
+			
+command /live [<text>]:
+	broadcast: Broadcast Stream
+	permission: *
+	aliases: /stream
+	trigger:
+		if arg 1 is not set:
+			send "&c/live (Server, Owner)"
+		if arg 1 is "server":
+			broadcast "[&4Alert&f] &cServer is on live: &ahttps://twitch.tv/servername"
+		if arg 1 is "Owner":
+			broadcast "[&4Alert&f] &c%player% is on live: &ahttps://twitch.tv/yourname"
+
+
+options:
+	logo: &8[&eCore&8]
+	permission: vanish.use
+	permissionalert: vanishalert.use
+	
+command /vanish [<offline player>]:
+	description: Vanish
+	permission: {@permission}
+	permission message: &4You do not have access to this command!
+	aliases: /v
+	executable by: player
+	trigger:
+		if arg 1 is not set:
+			if {vanish.%player%} is not set:
+				hide the player from all players
+				send "{@logo} &7You are &cVanish&7."
+				set {vanish.%player%} to true
+				loop all players:
+					if loop-player has permission "{@permissionalert}":
+						send "{@logo} &7The player &c%player% &7is now in vanish." to loop-player
+			else:
+				reveal the player from all players
+				send "{@logo} &7You are no longer &cVanish&7."
+				delete {vanish.%player%}
+				loop all players:
+					if loop-player has permission "{@permissionalert}":
+						send "{@logo} &7The player &c%player% &7is no longer in vanish." to loop-player
+		if arg 1 is set:
+			if {vanish.%arg 1%} is not set:
+				hide the arg 1 from all players
+				send "{@logo} &7You are &cVanish&7." to arg 1
+				send "{@logo} &7The player &c%arg 1% &7is now in vanish." to player
+				set {vanish.%arg 1%} to true
+				loop all players:
+					if loop-player has permission "{@permissionalert}":
+						send "{@logo} &7The player &c%arg 1% &7is now in vanish." to loop-player
+			else:
+				reveal the arg 1 from all players
+				send "{@logo} &7You are no longer &cVanish&7." to arg 1
+				send "{@logo} &7The player &c%arg 1% &7is no longer vanish." to player
+				delete {vanish.%arg 1%}
+				loop all players:
+					if loop-player has permission "{@permissionalert}":
+						send "{@logo} &7The player &c%arg 1% &7is no longer in vanish." to loop-player
+
+on quit:	
+	if {vanish.%player%} is set:
+		delete {vanish.%player%}
+on join:
+ 	loop all players:
+		if {vanish.%loop-player%} is true:
+		reveal the loop-player from all players
+		hide the loop-player from all players
+
+on chat:
+	if player has permission "message.owner":
+		cancel event
+		broadcast "&4&l[Owner] &c%player%: &f%message%"
+		set tab list name of player to "&4&l? &c%player%"
+		stop
+		
+	if player has permission "message.default":
+		cancel event
+		broadcast "&2%player%: &f%message%"
+		set tab list name of player to "&2%player%"
+		stop
+	
+command /msg <player> <text>:
+	description: Whisper another player
+	usage: /msg <player> <message>
+	aliases: /m
+	trigger:
+		set {chat.private.reply.%player%} to arg 1
+		set {chat.private.reply.%arg 1%} to player
+		send "&7(To %player%) %arg 2%" to player
+		send "&7(From %player%) %arg 2%" to arg 1
+
+command /reply <text>:	
+	description: Reply command.
+	usage: /reply <message>
+	aliases: /r
+	trigger:
+		send "&7(To %{chat.private.reply.%player%}%) %arg 1%" to player
+		send "&7(From %player%) %arg 1%" to {chat.private.reply.%player%}
+		
+on command "pl":
+		if player don't have permission "*":
+		cancel event
+		send "&8&m---------------------------------"
+		send "&c&lPlugins"
+		send "&8&m---------------------------------"
+		send "&7* &4Skript &a(Enabled)"
+		send ""
+		send "&7* &4PermissionEx &a(Enabled)"
+		send ""
+		send "&7* &4Litebans &a(Enabled)"
+		send "&8&m---------------------------------"
+
+on command "plugins":
+		if player don't have permission "*":
+		cancel event
+		send "&8&m---------------------------------"
+		send "&c&lPlugins"
+		send "&8&m---------------------------------"
+		send "&7* &4Skript &a(Enabled)"
+		send ""
+		send "&7* &4PermissionEx &a(Enabled)"
+		send ""
+		send "&7* &4Litebans &a(Enabled)"
+		send "&8&m---------------------------------"	
+
+on command "bukkit:plugins":
+		if player don't have permission "*":
+		cancel event
+		send "&8&m---------------------------------"
+		send "&c&lPlugins"
+		send "&8&m---------------------------------"
+		send "&7* &4Skript &a(Enabled)"
+		send ""
+		send "&7* &4PermissionEx &a(Enabled)"
+		send ""
+		send "&7* &4Litebans &a(Enabled)"
+		send "&8&m---------------------------------"	
+		
+on command "bukkit:pl":
+		if player don't have permission "*":
+		cancel event
+		send "&8&m---------------------------------"
+		send "&c&lPlugins"
+		send "&8&m---------------------------------"
+		send "&7* &4Skript &a(Enabled)"
+		send ""
+		send "&7* &4PermissionEx &a(Enabled)"
+		send ""
+		send "&7* &4Litebans &a(Enabled)"
+		send "&8&m---------------------------------"
+
+options:
+#What will go in front of the help menu.
+	helpprefix :  &4<>-------------&6Color&cChat&7&4-------------<>
+#What will go at the end of the help menu
+	helpsuffix : &4<>-------------&6Color&cChat&7&4-------------<>
+#The prefix for messages (other than the help menu)
+	prefix : &7< &6Color&cChat &7>
+#Version number, for aj only
+	version : 0.1
+#where it actiually changes it to color.
+on chat:
+	if player has permission "cc.color":
+		replace all "&" with "§" in message
+	else:
+		message "{@prefix} &cYou do not have the permission to talk in color!"
+command /colorchat:
+	description: How to type in color
+	usage: /colorchat
+	aliases: /cc
+	trigger:
+		set {version} to {@version}
+		message "{@helpprefix}"
+		message " "
+		message "    &aTo chat in color, just type&c & &abefore a number &c1-9 &aor letter &ca-f&a!"
+		message " "
+		message " "
+		message "            &6Color Menu"
+		message " "
+		message "       &00 &11 &22 &33 &44 &55 &66 &77 &88 &99"
+		message "       &aa &bb &cc &dd &ee &ff"
+		message " "
+		message " "
+		message "{@helpsuffix}"
+		
+on command "help":
+	cancel event
+	send "&d&m---------------------------------------"
+	send "&5Help"
+	send "&d&m---------------------------------------"
+	send "&d&lTwitter:"
+	send "&5@YourTwitter"
+	send ""
+	send "&d&lCommands:"
+	send "&5/plugins: &dTo see plugins"
+	send "&5/buy: &dSee Ranks"
+	send "&5/yt: &dTwitch & Youtube Requeriments"
+	send "&d&m---------------------------------------"
